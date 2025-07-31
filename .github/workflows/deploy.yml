@@ -46,11 +46,14 @@ jobs:
           terraform validate
           terraform plan 
           terraform apply -auto-approve
+          pwd
+          ls
 
       - name: Destroying S3 bucket
         if: ${{ github.event.inputs.destroy_s3 == 'true' }}
         run: |
           cd s3
-          ls *.tfstate
+          pwd
+          ls 
           # terraform init
           terraform destroy -auto-approve
