@@ -51,5 +51,6 @@ jobs:
         if: ${{ github.event.inputs.destroy_s3 == 'true' }}
         run: |
           cd s3
-          terraform init
+          ls *.tfstate
+          # terraform init
           terraform destroy -auto-approve
