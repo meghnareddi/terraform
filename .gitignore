@@ -1,0 +1,25 @@
+# === Terraform build files ===
+
+# Ignore all .terraform directories recursively (no need to list multiple patterns)
+**/.terraform/
+
+# Ignore Terraform state files and lock files everywhere
+**/*.tfstate
+**/*.tfstate.backup
+**/.terraform.lock.hcl
+
+# Ignore plan and apply output files
+*.tfplan
+*.tfapply
+
+# Ignore auto-loaded variable files and overrides
+*.auto.tfvars
+*.tfoverride
+
+# Ignore environment and CLI config files
+.envrc
+.terraformrc
+terraform.rc
+
+# Ignore crash logs
+crash.log
