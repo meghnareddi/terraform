@@ -57,3 +57,22 @@ jobs:
           ls 
           # terraform init
           terraform destroy -auto-approve
+      
+      - name: Creating ec2 instance
+        if: ${{ github.event.inputs.deploy_ec2 == 'true' }}
+        run: |
+          cd ec2
+          terraform init
+          terraform validate
+          terraform plan -var-file = "..\shared\dev.tfvars"
+          terraform apply -var-file = "..\shared\dev.tfvars" -auto-approve
+          pwd
+          ls
+
+      - name: Destroying ec2 instance
+        if: ${{ github.event.inputs.destroy_ec2 == 'true' }}
+        run: |
+          cd ec2
+          pwd
+          ls 
+          terraform destroy -auto-approve
