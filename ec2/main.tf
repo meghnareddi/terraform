@@ -1,3 +1,12 @@
+terraform {
+  backend "s3" {
+    bucket = "mr-terraform-state-bucket"
+    key    = "envs/${var.environment}/ec2/terraform.tfstate"
+    region = var.region
+  }
+}
+
+
 provider "aws" {
   region = var.region
 }
