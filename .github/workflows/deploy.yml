@@ -75,4 +75,4 @@ jobs:
           cd ec2
           pwd
           ls 
-          terraform destroy -auto-approve
+          terraform destroy -var-file="../shared/dev.tfvars" -auto-approve
