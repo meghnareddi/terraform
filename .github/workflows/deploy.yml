@@ -64,8 +64,8 @@ jobs:
           cd ec2
           terraform init
           terraform validate
-          terraform plan -var-file="..\shared\dev.tfvars"
-          terraform apply -var-file="..\shared\dev.tfvars" -auto-approve
+          terraform plan -var-file="../shared/dev.tfvars"
+          terraform apply -var-file="../shared/dev.tfvars" -auto-approve
           pwd
           ls
 
