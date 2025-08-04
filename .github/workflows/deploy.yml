@@ -63,6 +63,7 @@ jobs:
         if: ${{ github.event.inputs.deploy_ec2 == 'true' }}
         run: |
           cd ec2
+          aws s3 ls
           terraform init
           terraform validate
           terraform plan -var-file="../shared/dev.tfvars"
