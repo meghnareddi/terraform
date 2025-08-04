@@ -76,6 +76,8 @@ jobs:
         run: |
           cd ec2
           pwd
-          ls 
-          find . -name "*.tfstate"
+          ls
+          ls /home/runner/work/terraform/terraform/ec2
+          # find . -name "*.tfstate"
+          terraform init
           terraform destroy -var-file="../shared/dev.tfvars" -auto-approve
