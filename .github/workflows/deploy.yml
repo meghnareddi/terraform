@@ -80,4 +80,6 @@ jobs:
           ls /home/runner/work/terraform/terraform/ec2
           # find . -name "*.tfstate"
           terraform init
+          terraform workspace list
+          terraform state list
           terraform destroy -var-file="../shared/dev.tfvars" -auto-approve
