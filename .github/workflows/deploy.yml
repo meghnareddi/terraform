@@ -68,7 +68,9 @@ jobs:
           echo "workspace list"
           terraform workspace list
           echo "state list"
-          terraform state list
+          # terraform state list
+          echo "my-dir"
+          pwd
           echo "validate"
           terraform validate
           echo "plan"
