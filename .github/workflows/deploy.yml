@@ -44,8 +44,8 @@ jobs:
           cd s3
           terraform init
           terraform validate
-          terraform plan 
-          terraform apply -auto-approve
+          terraform plan -var-file="../shared/dev.tfvars" 
+          terraform apply -var-file="../shared/dev.tfvars" -auto-approve
           pwd
           ls
 
@@ -55,8 +55,9 @@ jobs:
           cd s3
           pwd
           ls 
+          find . -name "*.tfstate"
           # terraform init
-          terraform destroy -auto-approve
+          terraform destroy -var-file="../shared/dev.tfvars" -auto-approve
       
       - name: Creating ec2 instance
         if: ${{ github.event.inputs.deploy_ec2 == 'true' }}
