@@ -65,12 +65,19 @@ jobs:
           cd ec2
           aws s3 ls
           terraform init
+          echo "workspace list"
           terraform workspace list
+          echo "state list"
           terraform state list
+          echo "validate"
           terraform validate
+          echo "plan"
           terraform plan -var-file="../shared/dev.tfvars"
+          echo "apply"
           terraform apply -var-file="../shared/dev.tfvars" -auto-approve
+          echo "workspace list"
           terraform workspace list
+          echo "state list"
           terraform state list
           pwd
           ls
