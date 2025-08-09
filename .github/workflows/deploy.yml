@@ -100,7 +100,7 @@ jobs:
           terraform init
           echo "workspace list"
           terraform workspace list
-          echo "state list"
+          # echo "state list"
           # terraform state list
           echo "my-dir"
           pwd
