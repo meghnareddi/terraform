@@ -19,6 +19,14 @@ on:
         description: "Destroy EC2 resources?"
         required: false
         default: "false"
+      deploy_vpc:
+        description: "Create VPC?"
+        required: false
+        default: "false"
+      destroy_vpc:
+        description: "Destroy VPC resources?"
+        required: false
+        default: "false"
 
 jobs:
   terraform-deploy:
@@ -28,6 +36,7 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: us-east-2 
 
     steps:
       - name: Checkout repository
@@ -37,6 +46,22 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.6.0
+
+      - name: Creating VPC
+        if: ${{ github.event.inputs.deploy_vpc == 'true' }}
+        run: |
+          cd vpc
+          terraform init
+          terraform validate
+          terraform plan -var-file="../shared/dev.tfvars"
+          terraform apply -var-file="../shared/dev.tfvars" -auto-approve
+
+      - name: Destroying VPC
+        if: ${{ github.event.inputs.destroy_vpc == 'true' }}
+        run: |
+          cd vpc
+          # terraform init
+          terraform destroy -var-file="../shared/dev.tfvars" -auto-approve
 
       - name: Creating S3 bucket
         if: ${{ github.event.inputs.deploy_s3 == 'true' }}

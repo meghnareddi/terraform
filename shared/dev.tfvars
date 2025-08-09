@@ -12,3 +12,7 @@ environment = "dev"
 # s3-variables
 bucket_name = "mr-bucket"
 
+
+#vpc-variables
+vpc_cidr   = "10.0.0.0/16"
+cluster_name = "demo-eks"
