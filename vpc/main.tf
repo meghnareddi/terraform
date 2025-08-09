@@ -21,7 +21,7 @@ resource "random_string" "suffix" {
 }
 
 locals {
-  cluster_name = "demo-eks-${random_string.suffix.result}"
+  cluster_name = "mr-demo-eks-${random_string.suffix.result}"
 }
 
 # --- VPC Module ---
@@ -77,3 +77,14 @@ resource "aws_security_group_rule" "workers_egress" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
+output "vpc_id" {
+  value = module.vpc.vpc_id
+}
+
+output "private_subnets" {
+  value = module.vpc.private_subnets
+}
+
+output "workers_security_group_id" {
+  value = aws_security_group.workers_sg.id
+}

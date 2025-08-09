@@ -1,5 +1,5 @@
-variable "aws_region" {
-  default = "us-east-1"
+variable "region" {
+  default = "us-east-2"
 }
 
 variable "kubernetes_version" {
