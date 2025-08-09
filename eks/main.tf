@@ -54,7 +54,7 @@ module "eks" {
   enable_irsa = true
 
   eks_managed_node_group_defaults = {
-    instance_types         = ["t3.medium"]
+    instance_types         = ["t3.micro"]
     vpc_security_group_ids = [var.workers_security_group_id]
   }
 
