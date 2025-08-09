@@ -27,6 +27,14 @@ on:
         description: "Destroy VPC resources?"
         required: false
         default: "false"
+      deploy_eks:
+        description: "Create EKS cluster?"
+        required: false
+        default: "false"
+      destroy_eks:
+        description: "Destroy EKS cluster?"
+        required: false
+        default: "false"
 
 jobs:
   terraform-deploy:
@@ -120,4 +128,20 @@ jobs:
           terraform init
           terraform workspace list
           terraform state list
+          terraform destroy -var-file="../shared/dev.tfvars" -auto-approve
+
+      - name: Creating EKS cluster
+        if: ${{ github.event.inputs.deploy_eks == 'true' }}
+        run: |
+          cd eks
+          terraform init
+          terraform validate
+          terraform plan -var-file="../shared/dev.tfvars"
+          terraform apply -var-file="../shared/dev.tfvars" -auto-approve
+
+      - name: Destroying EKS cluster
+        if: ${{ github.event.inputs.destroy_eks == 'true' }}
+        run: |
+          cd eks
+          #terraform init
           terraform destroy -var-file="../shared/dev.tfvars" -auto-approve
