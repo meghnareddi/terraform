@@ -136,12 +136,12 @@ jobs:
           cd eks
           terraform init
           terraform validate
-          terraform plan -var-file="../shared/dev.tfvars"
-          terraform apply -var-file="../shared/dev.tfvars" -auto-approve
+          terraform plan -var-file="../shared/test-eks.tfvars"
+          terraform apply -var-file="../shared/test-eks.tfvars" -auto-approve
 
       - name: Destroying EKS cluster
         if: ${{ github.event.inputs.destroy_eks == 'true' }}
         run: |
           cd eks
           #terraform init
-          terraform destroy -var-file="../shared/dev.tfvars" -auto-approve
+          terraform destroy -var-file="../shared/test-eks.tfvars" -auto-approve
