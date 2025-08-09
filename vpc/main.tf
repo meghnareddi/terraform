@@ -31,7 +31,7 @@ module "vpc" {
 
   name                 = "${local.cluster_name}-vpc"
   cidr                 = var.vpc_cidr
-  azs                  = data.aws_availability_zones.available.names[0:2]
+  azs                  = data.aws_availability_zones.available.names
   public_subnets       = ["10.0.10.0/24", "10.0.11.0/24"]
   private_subnets      = ["10.0.20.0/24", "10.0.21.0/24"]
   enable_dns_hostnames = true
